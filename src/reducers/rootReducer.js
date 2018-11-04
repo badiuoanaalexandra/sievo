@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import dataReducer from './dataReducer';
+import projectsReducer from './projectsReducer';
+import filteredProjectsReducer from './filteredProjectsReducer';
 export default combineReducers({
- dataReducer
+ projectsReducer,
+ filteredProjectsReducer
 });

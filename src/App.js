@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { requestApiData} from './actions/apiActions'
+import { requestProjectsData} from './actions/projectsApiActions'
 
-import ProjectTable from './components/desktop/table';
+import ProjectTable from './components/table/index';
+import Filter from './components/filter/index';
 
 class App extends React.Component {
   componentWillMount() {
-    this.props.requestApiData();
+    this.props.requestProjectsData();
   }
   render() {
     return (
       <div className="App">
+          <Filter />
           <ProjectTable />
       </div>
     );
@@ -20,6 +22,6 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({ data:state.dataReducer })
 
-const mapDispatchToProps = dispatch => bindActionCreators({requestApiData}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({requestProjectsData}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

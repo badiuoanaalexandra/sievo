@@ -2,7 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers/rootReducer';
-import mySaga from './sagas/sagas'
+import getProjects from './sagas/projectsApiSagas';
+import filterProjects from './sagas/projectsFilterSagas';
 
 const sagaMiddleware = createSagaMiddleware();
 export default createStore(
@@ -10,4 +11,5 @@ export default createStore(
    applyMiddleware(sagaMiddleware)
  );
 
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(getProjects);
+sagaMiddleware.run(filterProjects);

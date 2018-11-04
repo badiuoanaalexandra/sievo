@@ -1,8 +1,8 @@
-export const fetchData = async () => {
+export const fetchProjects = async () => {
   try{
     const response = await fetch("https://sievo-react-assignment.azurewebsites.net/api/data")
-    const data = await response.json();
-    return data;
+    const projects = await response.json();
+    return projects;
   }
   catch(e){
     console.log(e);

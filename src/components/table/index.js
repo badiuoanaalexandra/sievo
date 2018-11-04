@@ -9,8 +9,8 @@ import "react-table/react-table.css";
 class ProjectTable extends React.Component {
 
   render() {
-    const data = this.props.data;
-    if(Object.keys(data).length === 0) return (
+    const data = this.props.filter ? this.props.filteredProjects : this.props.projects;
+    if(data === null) return (
       <div>fetching data</div>
     )
 
@@ -47,6 +47,9 @@ class ProjectTable extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ data:state.dataReducer })
+const mapStateToProps = state => ({
+  projects:state.projectsReducer,
+  filter:state.filteredProjectsReducer.filter,
+  filteredProjects: state.filteredProjectsReducer.filteredProjects })
 
 export default connect(mapStateToProps)(ProjectTable);
