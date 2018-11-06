@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
+import "./style.css";
+
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-
 class ProjectTable extends React.Component {
-
   render() {
+
     if(this.props.projects === null) return (
       <div>fetching data</div>
     )
@@ -19,6 +20,12 @@ class ProjectTable extends React.Component {
 
     const data = this.getData();
     return (
+      <div>
+      <div className="project-table">
+          {this.getHeaders()}
+          {this.getRows(data)}
+      </div>
+
       <div>
           <ReactTable
           data={this.getData()}
@@ -34,8 +41,11 @@ class ProjectTable extends React.Component {
           className="-striped -highlight"
         />
       </div>
+    </div>
     );
+
   }
+
   getData = () => {
     return this.props.filter ? this.props.filteredProjects : this.props.projects;
   }
@@ -59,18 +69,47 @@ class ProjectTable extends React.Component {
             }
           }
 
-        cols.push({
-            Header: field.toUpperCase(),
-            id:field.toLowerCase(),
-            accessor: d => {
-              if (d[field] === "NULL") return ""
-              return field.includes('date') ? new Date(d[field]).toLocaleDateString("fi-FI") : d[field]
-            }
-          });
+        cols.push(columnConfig);
       }
 
       return cols;
   }
+
+  getHeaders = () => {
+    const referenceProject = this.props.projects[0];
+    let headers = [];
+
+    for (let field in referenceProject){
+        headers.push(field === "project"? (<div><a>{field.toUpperCase()}</a></div>) : (<div>{field.toUpperCase()}</div>))
+    }
+
+      return (<div>{headers}</div>);
+  }
+
+  getRows = (projects) => {
+    return projects.map((project, index) => {
+        return (<div key={index}>
+            {this.getProjectRow(project)}
+        </div>)
+    })
+  }
+
+  getProjectRow = (project) => {
+    let rows = [];
+    for (let field in project){
+        rows.push((<div>{this.getValue(field, project)}</div>))
+    }
+    return rows;
+  }
+
+  getValue = (field, project) => {
+      if (project[field] === "NULL") return "";
+      if (field.includes('date')){
+          return new Date(project[field]).toLocaleDateString("fi-FI")
+      }
+      return  project[field];
+     }
+
 }
 
 const mapStateToProps = state => ({

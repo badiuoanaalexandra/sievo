@@ -7,13 +7,13 @@ class Filter extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" ref="descriptionFilter" placeholder="Enter description"/>
+        <input type="text" onChange={this.filterProjects} ref="descriptionFilter" placeholder="Enter description"/>
         <button onClick={this.filterProjects}>Search projects</button>
       </div>
     );
   }
   filterProjects = (event) => {
-      this.props.requestProjectsFilter(this.refs.descriptionFilter.value.toLowerCase(), this.props.projects);
+      this.props.requestProjectsFilter(event.target.value.toLowerCase(), this.props.projects);
   }
 }
 
