@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
+import { requestProjectsSort} from '../../actions/projectsSortActions'
 
 import "./style.css";
-
-import ReactTable from "react-table";
-import "react-table/react-table.css";
 
 class ProjectTable extends React.Component {
   render() {
@@ -18,6 +16,10 @@ class ProjectTable extends React.Component {
       <div>There are no projects</div>
     )
 
+    if(this.props.changed && (!this.props.changedProjects || this.props.changedProjects.length === 0)) return (
+      <div>There are no projects to match the filter</div>
+    )
+
     const data = this.getData();
     return (
       <div>
@@ -25,29 +27,18 @@ class ProjectTable extends React.Component {
           {this.getHeaders()}
           {this.getRows(data)}
       </div>
-
-      <div>
-          <ReactTable
-          data={this.getData()}
-          showPagination={false}
-          defaultPageSize={data.length}
-          columns={[
-            {
-              Header: "Projects",
-              columns: this.getColumns()
-            },
-          ]}
-          defaultPageSize={10}
-          className="-striped -highlight"
-        />
-      </div>
     </div>
     );
 
   }
 
   getData = () => {
-    return this.props.filter ? this.props.filteredProjects : this.props.projects;
+    return this.props.changed ? this.props.changedProjects : this.props.projects;
+  }
+
+  sortProjects = (event) => {
+      var fieldName = event.target.getAttribute("field");
+      this.props.requestProjectsSort(this.props.description, this.props.sortingOrder, fieldName, this.getData());
   }
 
   //we will use the fields of the first project to build our columns
@@ -80,7 +71,8 @@ class ProjectTable extends React.Component {
     let headers = [];
 
     for (let field in referenceProject){
-        headers.push(field === "project"? (<div><a>{field.toUpperCase()}</a></div>) : (<div>{field.toUpperCase()}</div>))
+        headers.push(field === "project"? (<div><a field={field} onClick={this.sortProjects}>{field.toUpperCase()}</a></div>) :
+        (<div>{field.toUpperCase()}</div>))
     }
 
       return (<div>{headers}</div>);
@@ -114,7 +106,12 @@ class ProjectTable extends React.Component {
 
 const mapStateToProps = state => ({
   projects:state.projectsReducer,
-  filter:state.filteredProjectsReducer.filter,
-  filteredProjects: state.filteredProjectsReducer.filteredProjects })
+  changed:state.displayProjectsReducer.changed,
+  description:state.displayProjectsReducer.description,
+  sortingOrder:state.displayProjectsReducer.sortingOrder,
+  sortField:state.displayProjectsReducer.sortField,
+  changedProjects: state.displayProjectsReducer.changedProjects })
 
-export default connect(mapStateToProps)(ProjectTable);
+const mapDispatchToProps = dispatch => bindActionCreators({requestProjectsSort}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectTable);

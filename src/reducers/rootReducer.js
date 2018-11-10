@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import projectsReducer from './projectsReducer';
-import filteredProjectsReducer from './filteredProjectsReducer';
+import displayProjectsReducer from './displayProjectsReducer';
 export default combineReducers({
  projectsReducer,
- filteredProjectsReducer
+ displayProjectsReducer
 });

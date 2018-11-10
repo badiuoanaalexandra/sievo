@@ -2,23 +2,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { requestProjectsFilter} from '../../actions/projectsFilterActions'
+import { requestProjectsReset} from '../../actions/projectsResetActions'
 
 class Filter extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" onChange={this.filterProjects} ref="descriptionFilter" placeholder="Enter description"/>
-        <button onClick={this.filterProjects}>Search projects</button>
+        <input type="text" value={this.props.description} onChange={this.filterProjects} placeholder="Enter description"/>
+        <button onClick={this.resetProjects}>RESET</button>
       </div>
     );
   }
   filterProjects = (event) => {
-      this.props.requestProjectsFilter(event.target.value.toLowerCase(), this.props.projects);
+      this.props.requestProjectsFilter(event.target.value.toLowerCase(), "description", this.props.sortingOrder, this.props.sortField, this.props.projects);
+  }
+  resetProjects = (event) => {
+    this.props.requestProjectsReset();
   }
 }
 
-const mapStateToProps = state => ({ projects:state.projectsReducer })
+const mapStateToProps = state => (
+  {
+    projects:state.projectsReducer,
+    description:state.displayProjectsReducer.description,
+    sortingOrder:state.displayProjectsReducer.sortingOrder,
+    sortField:state.displayProjectsReducer.sortField
+  })
 
-const mapDispatchToProps = dispatch => bindActionCreators({requestProjectsFilter}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({requestProjectsFilter, requestProjectsReset}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

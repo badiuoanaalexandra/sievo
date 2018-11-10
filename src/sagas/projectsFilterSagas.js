@@ -2,13 +2,22 @@ import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
 
 import {REQUEST_PROJECTS_FILTER, receiveProjectsFilter} from '../actions/projectsFilterActions'
 import { fetchFilteredProjects } from '../helpers/projectsFilter'
+import { fetchSortedProjects } from '../helpers/projectsSort'
 
-export function* filterProjectsbyDescription(action) {
+export function* filterProjectsbyField(action) {
   try{
     const description = action.description;
-    const projects = action.projects;
-    const filteredProjects = yield call(fetchFilteredProjects, description, projects)
-    yield put(receiveProjectsFilter(filteredProjects))
+    const descriptionField = action.descriptionField;
+    const projects = action.filterProjects;
+    let filteredProjects = yield call(fetchFilteredProjects, description, descriptionField, projects)
+
+    const sortingOrder = action.sortingOrder;
+    const sortField = action.sortField;
+    if(!sortingOrder || sortingOrder !== ""){
+      filteredProjects = fetchSortedProjects(sortingOrder, sortField, filteredProjects)
+    }
+
+    yield put(receiveProjectsFilter(description, sortingOrder, sortField, filteredProjects))
   }
   catch(e){
     console.log(e);
@@ -16,5 +25,5 @@ export function* filterProjectsbyDescription(action) {
 }
 
 export default function* filterProjects(){
-  yield takeLatest(REQUEST_PROJECTS_FILTER, filterProjectsbyDescription)
+  yield takeLatest(REQUEST_PROJECTS_FILTER, filterProjectsbyField)
 }

@@ -4,6 +4,8 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers/rootReducer';
 import getProjects from './sagas/projectsApiSagas';
 import filterProjects from './sagas/projectsFilterSagas';
+import sortProjects from './sagas/projectsSortSagas';
+import resetProjects from './sagas/projectsResetSagas';
 
 const sagaMiddleware = createSagaMiddleware();
 export default createStore(
@@ -13,3 +15,5 @@ export default createStore(
 
 sagaMiddleware.run(getProjects);
 sagaMiddleware.run(filterProjects);
+sagaMiddleware.run(sortProjects);
+sagaMiddleware.run(resetProjects);
