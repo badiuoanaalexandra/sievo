@@ -1,0 +1,19 @@
+.app .background-image-wrapper{
+  width:100%;
+  position: fixed;
+  top:0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.app .background-image-wrapper img{
+  width:100%;
+  height:auto;
+}
+
+.app .background-image-content{
+  max-width:1300px;
+  margin: 30px auto;
+  position: relative;
+  z-index: 99;
+}

@@ -1,0 +1,8 @@
+.filter-wrapper{
+  margin:20px 0;
+}
+
+.filter-wrapper .filter{
+  float:right;
+  margin-bottom: 20px;
+}

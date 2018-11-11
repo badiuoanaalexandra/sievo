@@ -1,18 +1,68 @@
 .project-table{
   display:table;
   width:100%;
+  text-align: center;
+  box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.2);
 }
 
 .project-table > div{
   display:table-row;
   padding:5px;
+  background-color:  rgba(255,253,255,0.9);
+  border-bottom:1px solid #62B3DC;
 }
 
 .project-table > div > div{
   display:table-cell;
-  padding:5px;
+  padding:25px 10px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   max-width: 0;
+  border-bottom:1px solid rgba(252, 229, 237, 1);
+}
+
+.project-table > div > div:last-child{
+  border-right:1px solid rgba(252, 229, 237, 1);
+}
+
+.project-table > div > div:first-child{
+  border-left:1px solid rgba(252, 229, 237, 1);
+}
+
+.project-table > div:first-child{
+  background-color: rgba(98,179,220,0.9);
+  color:white;
+  font-size: 1.1em;
+  font-style: bold;
+}
+
+.project-table > div:first-child > div{
+  border-bottom: 1px solid #62B3DC;
+}
+
+.project-table > div:first-child > div:first-child{
+    border-left:1px solid #62B3DC;
+}
+
+.project-table > div:first-child > div:last-child{
+    border-right:1px solid #62B3DC;
+}
+
+.project-table div.sort > a{
+  padding-right:20px;
+  cursor: pointer;
+  color: #FCE5ED;
+  display: block;
+  background-image: url(../../assets/not-sorted.svg);
+  background-position: right;
+  background-repeat:no-repeat;
+}
+
+.project-table div.sort > a.asc{
+  background-image: url(../../assets/sorted-asc.svg);
+}
+
+.project-table div.sort > a.desc{
+  background-image: url(../../assets/sorted-desc.svg);
 }

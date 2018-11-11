@@ -8,16 +8,8 @@ import "./style.css";
 class ProjectTable extends React.Component {
   render() {
 
-    if(this.props.projects === null) return (
-      <div>fetching data</div>
-    )
-
-    if(this.props.projects.length === 0) return (
-      <div>There are no projects</div>
-    )
-
-    if(this.props.changed && (!this.props.changedProjects || this.props.changedProjects.length === 0)) return (
-      <div>There are no projects to match the filter</div>
+    if(this.noDataExists()) return (
+      <div className="project-table">{this.getNoDataText()}</div>
     )
 
     const data = this.getData();
@@ -30,6 +22,16 @@ class ProjectTable extends React.Component {
     </div>
     );
 
+  }
+
+  noDataExists = () => {
+    return (this.props.projects === null) || (this.props.projects.length === 0) || (this.props.changed && (!this.props.changedProjects || this.props.changedProjects.length === 0));
+  }
+
+  getNoDataText = () => {
+    if (this.props.projects === null) return "Fetching data..."
+    else if (this.props.projects.length === 0) return "There are no projects to fetch"
+    else return "There are no projects to match the filter"
   }
 
   getData = () => {
@@ -71,7 +73,7 @@ class ProjectTable extends React.Component {
     let headers = [];
 
     for (let field in referenceProject){
-        headers.push(field === "project"? (<div><a field={field} onClick={this.sortProjects}>{field.toUpperCase()}</a></div>) :
+        headers.push(field === "project"? (<div className="sort"><a className={this.props.sortingOrder} field={field} onClick={this.sortProjects}>{field.toUpperCase()}</a></div>) :
         (<div>{field.toUpperCase()}</div>))
     }
 
@@ -98,6 +100,10 @@ class ProjectTable extends React.Component {
       if (project[field] === "NULL") return "";
       if (field.includes('date')){
           return new Date(project[field]).toLocaleDateString("fi-FI")
+      }
+
+      if(typeof project[field] === "number"){
+        return project[field].toLocaleString('fi-FI');
       }
       return  project[field];
      }
