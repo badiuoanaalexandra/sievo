@@ -13,7 +13,12 @@ export default StyleSheet.create({
         "marginLeft": 0
     },
     "filter-wrapper filter": {
-        "float": "right",
-        "marginBottom": 20
+        "float": "right"
+    },
+    "reset": {
+        "float": "right"
+    },
+    "filter-wrapper sort": {
+        "display": "none"
     }
 });

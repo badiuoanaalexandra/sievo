@@ -1,18 +1,4 @@
-.project-table{
-  display:table;
-  width:100%;
-  text-align: center;
-  box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.2);
-}
-
-.project-table > div{
-  display:table-row;
-  padding:5px;
-  background-color:  rgba(255,253,255,0.9);
-  border-bottom:1px solid #62B3DC;
-}
-
-.project-table > div > div{
+.project-table div.cell{
   display:table-cell;
   padding:25px 10px;
   text-overflow: ellipsis;
@@ -20,49 +6,118 @@
   white-space: nowrap;
   max-width: 0;
   border-bottom:1px solid rgba(252, 229, 237, 1);
+  background-color:  rgba(255,253,255,0.9);
 }
 
-.project-table > div > div:last-child{
-  border-right:1px solid rgba(252, 229, 237, 1);
-}
-
-.project-table > div > div:first-child{
-  border-left:1px solid rgba(252, 229, 237, 1);
-}
-
-.project-table > div:first-child{
+.project-table div.header-cell{
   background-color: rgba(98,179,220,0.9);
   color:white;
   font-size: 1.1em;
   font-style: bold;
 }
 
-.project-table > div:first-child > div{
-  border-bottom: 1px solid #62B3DC;
+.project-table .no-projects{
+  padding:20px;
+  display:block;
+  box-sizing: border-box;
 }
 
-.project-table > div:first-child > div:first-child{
-    border-left:1px solid #62B3DC;
+@media only screen and (min-width: 770px) {
+  .project-table{
+    display:table;
+    width:100%;
+    text-align: center;
+    box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.2);
+  }
+
+  .project-table > div{
+    display:table-row;
+    padding:5px;
+    border-bottom:1px solid #62B3DC;
+  }
+
+  .project-table > div > div{
+    display:table-cell;
+    padding:25px 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 0;
+    border-bottom:1px solid rgba(252, 229, 237, 1);
+  }
+
+  .project-table > div > div:last-child{
+    border-right:1px solid rgba(252, 229, 237, 1);
+  }
+
+  .project-table > div > div:first-child{
+    border-left:1px solid rgba(252, 229, 237, 1);
+  }
+
+  .project-table > div:first-child{
+    background-color: rgba(98,179,220,0.9);
+    color:white;
+    font-size: 1.1em;
+    font-style: bold;
+  }
+
+  .project-table > div:first-child > div{
+    border-bottom: 1px solid #62B3DC;
+  }
+
+  .project-table > div:first-child > div:first-child{
+      border-left:1px solid #62B3DC;
+  }
+
+  .project-table > div:first-child > div:last-child{
+      border-right:1px solid #62B3DC;
+  }
+
+  .project-table div.sort > a{
+    padding-right:20px;
+    cursor: pointer;
+    color: #FCE5ED;
+    display: block;
+    background-image: url(../../assets/not-sorted.svg);
+    background-position: right;
+    background-repeat:no-repeat;
+  }
+
+  .project-table div.sort > a.asc{
+    background-image: url(../../assets/sorted-asc.svg);
+  }
+
+  .project-table div.sort > a.desc{
+    background-image: url(../../assets/sorted-desc.svg);
+  }
 }
 
-.project-table > div:first-child > div:last-child{
-    border-right:1px solid #62B3DC;
-}
+@media only screen and (max-width: 770px) {
+  .project-table > div{
+    display:table;
+    width:100%;
+    margin-bottom:30px;
+  }
 
-.project-table div.sort > a{
-  padding-right:20px;
-  cursor: pointer;
-  color: #FCE5ED;
-  display: block;
-  background-image: url(../../assets/not-sorted.svg);
-  background-position: right;
-  background-repeat:no-repeat;
-}
+  .project-table > div > div{
+    display:table-row;
+  }
 
-.project-table div.sort > a.asc{
-  background-image: url(../../assets/sorted-asc.svg);
-}
+  .project-table > div > div > div{
+    display:table-cell;
 
-.project-table div.sort > a.desc{
-  background-image: url(../../assets/sorted-desc.svg);
+  }
+
+  .project-table > div > div > div:first-child{
+    width:35%;
+    border-bottom:1px solid rgba(52, 124, 164, 0.5);
+  }
+
+  .project-table .no-projects{
+    float:left;
+    color:#347CA4;
+    background-color: rgba(255,253,255,0.9);
+  }
+
+
 }

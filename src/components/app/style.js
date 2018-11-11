@@ -24,6 +24,10 @@ export default StyleSheet.create({
         "marginBottom": 30,
         "marginLeft": "auto",
         "position": "relative",
-        "zIndex": 99
+        "zIndex": 99,
+        "paddingTop": 10,
+        "paddingRight": 10,
+        "paddingBottom": 10,
+        "paddingLeft": 10
     }
 });

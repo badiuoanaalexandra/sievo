@@ -3,13 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { requestProjectsSort} from '../../actions/projectsSortActions'
 
+import {tabletBreakpoint, mobileBreakpoint} from "../../helpers/ui"
+
 import "./style.css";
+
 
 class ProjectTable extends React.Component {
   render() {
 
     if(this.noDataExists()) return (
-      <div className="project-table">{this.getNoDataText()}</div>
+      <div className="project-table">
+        <div className="no-projects">
+          {this.getNoDataText()}
+        </div>
+      </div>
     )
 
     const data = this.getData();
@@ -25,7 +32,9 @@ class ProjectTable extends React.Component {
   }
 
   noDataExists = () => {
-    return (this.props.projects === null) || (this.props.projects.length === 0) || (this.props.changed && (!this.props.changedProjects || this.props.changedProjects.length === 0));
+    return (this.props.projects === null) ||
+    (this.props.projects.length === 0) ||
+    (this.props.changed && (!this.props.changedProjects || this.props.changedProjects.length === 0));
   }
 
   getNoDataText = () => {
@@ -69,12 +78,14 @@ class ProjectTable extends React.Component {
   }
 
   getHeaders = () => {
-    const referenceProject = this.props.projects[0];
     let headers = [];
+    if (this.props.viewportWidth < tabletBreakpoint) return headers;
+
+    const referenceProject = this.props.projects[0];
 
     for (let field in referenceProject){
-        headers.push(field === "project"? (<div className="sort"><a className={this.props.sortingOrder} field={field} onClick={this.sortProjects}>{field.toUpperCase()}</a></div>) :
-        (<div>{field.toUpperCase()}</div>))
+        headers.push(field === "project"? (<div className="sort header-cell"><a className={this.props.sortingOrder} field={field} onClick={this.sortProjects}>{field.toUpperCase()}</a></div>) :
+        (<div className="header-cell">{field.toUpperCase()}</div>))
     }
 
       return (<div>{headers}</div>);
@@ -91,7 +102,11 @@ class ProjectTable extends React.Component {
   getProjectRow = (project) => {
     let rows = [];
     for (let field in project){
-        rows.push((<div>{this.getValue(field, project)}</div>))
+        (this.props.viewportWidth < tabletBreakpoint) ?
+        rows.push((<div>
+        <div className="cell header-cell">{field.toUpperCase()}</div>
+        <div className="cell">{this.getValue(field, project)}</div></div>)) :
+        rows.push((<div className="cell">{this.getValue(field, project)}</div>))
     }
     return rows;
   }
@@ -102,7 +117,7 @@ class ProjectTable extends React.Component {
           return new Date(project[field]).toLocaleDateString("fi-FI")
       }
 
-      if(typeof project[field] === "number"){
+      if (typeof project[field] === "number"){
         return project[field].toLocaleString('fi-FI');
       }
       return  project[field];
@@ -116,7 +131,8 @@ const mapStateToProps = state => ({
   description:state.displayProjectsReducer.description,
   sortingOrder:state.displayProjectsReducer.sortingOrder,
   sortField:state.displayProjectsReducer.sortField,
-  changedProjects: state.displayProjectsReducer.changedProjects })
+  changedProjects: state.displayProjectsReducer.changedProjects,
+  viewportWidth:state.uiReducer })
 
 const mapDispatchToProps = dispatch => bindActionCreators({requestProjectsSort}, dispatch)
 
