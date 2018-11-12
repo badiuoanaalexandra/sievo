@@ -5,7 +5,7 @@ export const fetchFilteredProjects = async (description, descriptionField, proje
 
     if (!description || description === "") return projects;
 
-    const filteredProjects = projects.filter(p => p[descriptionField].toLowerCase().includes(description));
+    const filteredProjects = projects.filter(p => p[descriptionField].toLowerCase().includes(description.toLowerCase()));
     return filteredProjects;
   }
   catch(e){

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProjectTable /> renders 1`] = `
+<div>
+  <div
+    className="project-table"
+  >
+    <div>
+      <div
+        className="sort header-cell"
+      >
+        <a
+          className=""
+          field="project"
+          onClick={[Function]}
+        >
+          PROJECT
+        </a>
+      </div>
+      <div
+        className="header-cell"
+      >
+        DESCRIPTION
+      </div>
+      <div
+        className="header-cell"
+      >
+        START DATE
+      </div>
+      <div
+        className="header-cell"
+      >
+        SAVINGS AMOUNT
+      </div>
+      <div
+        className="header-cell"
+      >
+        CURRENCY
+      </div>
+    </div>
+    <div
+      key="0"
+    >
+      <div
+        className="cell"
+      >
+        2
+      </div>
+      <div
+        className="cell"
+      >
+        test
+      </div>
+      <div
+        className="cell"
+      >
+        2013-12-28
+      </div>
+      <div
+        className="cell"
+      >
+        3,722.417
+      </div>
+      <div
+        className="cell"
+      />
+    </div>
+    <div
+      key="1"
+    >
+      <div
+        className="cell"
+      >
+        1
+      </div>
+      <div
+        className="cell"
+      >
+        test 2
+      </div>
+      <div
+        className="cell"
+      >
+        2014-1-28
+      </div>
+      <div
+        className="cell"
+      >
+        372.32
+      </div>
+      <div
+        className="cell"
+      >
+        EUR
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Filter /> renders 1`] = `
+<div
+  className="filter-wrapper"
+>
+  <h1>
+    Projects
+  </h1>
+  <div
+    className="filter"
+  >
+    <input
+      onChange={[Function]}
+      placeholder="Enter description"
+      type="text"
+      value=""
+    />
+  </div>
+  <a
+    className=" sort button"
+    onClick={[Function]}
+  >
+    SORT
+  </a>
+  <a
+    className="reset button"
+    onClick={[Function]}
+  >
+    RESET
+  </a>
+</div>
+`;
