@@ -5,8 +5,6 @@ import * as projectsResetActions from "../../src/actions/projectsResetActions"
 const mockStore = configureStore();
 const store = mockStore();
 
-
-
 describe('projectsResetActions', () => {
   beforeEach(() => {
     store.clearActions();

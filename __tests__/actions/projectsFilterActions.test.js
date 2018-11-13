@@ -5,7 +5,6 @@ import * as projectsFilterActions from "../../src/actions/projectsFilterActions"
 const mockStore = configureStore();
 const store = mockStore();
 
-
 describe('projectsFilterActions', () => {
   const description = "test descr";
   const descriptionField = "description";

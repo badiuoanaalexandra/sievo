@@ -1,4 +1,4 @@
-import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
+import {call, put, takeLatest} from 'redux-saga/effects'
 
 import {REQUEST_PROJECTS_FILTER, receiveProjectsFilter} from '../actions/projectsFilterActions'
 import { fetchFilteredProjects } from '../helpers/projectsFilter'

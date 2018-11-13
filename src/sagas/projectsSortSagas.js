@@ -1,4 +1,4 @@
-import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
+import {put, takeLatest} from 'redux-saga/effects'
 
 import {REQUEST_PROJECTS_SORT, receiveProjectsSort} from '../actions/projectsSortActions'
 import { fetchSortedProjects, getNewSortingOrder } from '../helpers/projectsSort'

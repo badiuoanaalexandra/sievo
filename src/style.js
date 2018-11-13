@@ -33,7 +33,9 @@ export default StyleSheet.create({
         "fontWeight": "500",
         "boxShadow": "0px 15px 10px -10px rgba(0,0,0,0.2)",
         "boxSizing": "border-box",
-        "textAlign": "center"
+        "textAlign": "center",
+        "outline": "none",
+        "cursor": "pointer"
     },
     "abutton": {
         "backgroundColor": "#62B3DC",
@@ -47,7 +49,9 @@ export default StyleSheet.create({
         "fontWeight": "500",
         "boxShadow": "0px 15px 10px -10px rgba(0,0,0,0.2)",
         "boxSizing": "border-box",
-        "textAlign": "center"
+        "textAlign": "center",
+        "outline": "none",
+        "cursor": "pointer"
     },
     "button:hover": {
         "border": "1px solid #347CA4",

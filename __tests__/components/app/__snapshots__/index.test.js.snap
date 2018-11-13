@@ -8,6 +8,7 @@ exports[`<App /> renders 1`] = `
     className="background-image-wrapper"
   >
     <img
+      alt="background"
       src="background-desktop.jpg"
     />
   </div>

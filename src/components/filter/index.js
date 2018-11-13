@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { requestProjectsFilter} from '../../actions/projectsFilterActions'
@@ -15,8 +15,8 @@ class Filter extends React.Component {
         <div className="filter">
           <input type="text" value={this.props.description} onChange={this.filterProjects} placeholder="Enter description"/>
         </div>
-        <a className={this.getSortClassName()} onClick={this.sortProjects}>SORT</a>
-        <a className="reset button" onClick={this.resetProjects}>RESET</a>
+        <button className={"sort " + this.getSortClassName()} onClick={this.sortProjects}>SORT</button>
+        <button className="reset button" onClick={this.resetProjects}>RESET</button>
       </div>
     );
   }
@@ -43,7 +43,8 @@ const mapStateToProps = state => (
     description:state.displayProjectsReducer.description,
     sortingOrder:state.displayProjectsReducer.sortingOrder,
     sortField:state.displayProjectsReducer.sortField,
-    changedProjects: state.displayProjectsReducer.changedProjects
+    changedProjects: state.displayProjectsReducer.changedProjects,
+    changed:state.displayProjectsReducer.changed
   })
 
 const mapDispatchToProps = dispatch => bindActionCreators({requestProjectsFilter, requestProjectsReset, requestProjectsSort}, dispatch)

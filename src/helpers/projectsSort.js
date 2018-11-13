@@ -8,10 +8,8 @@ export const fetchSortedProjects = (sortingOrder, sortField, projects) => {
     switch (sortingOrder) {
       case "asc":
         return newProjects.sort(function(a, b){return a[sortField] - b[sortField]});
-        break;
       case "desc":
         return newProjects.sort(function(a, b){return b[sortField] - a[sortField]});
-        break;
       default:
         return newProjects;
     }
@@ -27,13 +25,10 @@ export const getNewSortingOrder = (sortingOrder) => {
     switch (sortingOrder) {
       case "":
         return "asc";
-        break;
       case "asc":
         return "desc";
-        break;
       case "desc":
         return "asc";
-        break;
       default:
         return "";
     }

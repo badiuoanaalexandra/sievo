@@ -1,4 +1,4 @@
-import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
+import {call, put, takeLatest} from 'redux-saga/effects'
 
 import {REQUEST_PROJECTS_DATA, receiveProjectsData} from '../actions/projectsApiActions'
 import { fetchProjects } from '../helpers/projectsApi'

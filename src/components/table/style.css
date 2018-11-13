@@ -73,21 +73,23 @@
       border-right:1px solid #62B3DC;
   }
 
-  .project-table div.sort > a{
-    padding-right:20px;
+  .project-table div.sort > button{
+    padding-right:30px;
     cursor: pointer;
     color: #FCE5ED;
     display: block;
     background-image: url(../../assets/not-sorted.svg);
     background-position: right;
     background-repeat:no-repeat;
+    background-size: 20px;
+    box-shadow: none;
   }
 
-  .project-table div.sort > a.asc{
+  .project-table div.sort > button.asc{
     background-image: url(../../assets/sorted-asc.svg);
   }
 
-  .project-table div.sort > a.desc{
+  .project-table div.sort > button.desc{
     background-image: url(../../assets/sorted-desc.svg);
   }
 }

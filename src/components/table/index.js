@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { requestProjectsSort} from '../../actions/projectsSortActions'
 
-import {tabletBreakpoint, mobileBreakpoint} from "../../helpers/ui"
+import {tabletBreakpoint} from "../../helpers/ui"
 
 import "./style.css";
 
@@ -52,40 +52,17 @@ class ProjectTable extends React.Component {
       this.props.requestProjectsSort(this.props.description, this.props.sortingOrder, fieldName, this.getData());
   }
 
-  //we will use the fields of the first project to build our columns
-  //other way to do this is to just add columns "manually", but every time a new column is added to the API we would need to also add it here
-  //to avoid extra work we will just build our columns dynamically
-  //assumption is that if the field name has "Date" it's date type, if it cannot convert it to a date, it just returns the string - other way to do this is probably use some regex
-  getColumns = () => {
-    const referenceProject = this.props.projects[0];
-      let cols = [];
-
-      for (let field in referenceProject){
-        const isDate = field.includes('date');
-        let columnConfig = {
-            Header: field.toUpperCase(),
-            id:field.toLowerCase(),
-            accessor: d => {
-              if (d[field] === "NULL") return ""
-              return field.includes('date') ? new Date(d[field]).toLocaleDateString("fi-FI") : d[field]
-            }
-          }
-
-        cols.push(columnConfig);
-      }
-
-      return cols;
-  }
-
   getHeaders = () => {
     let headers = [];
     if (this.props.viewportWidth < tabletBreakpoint) return headers;
 
     const referenceProject = this.props.projects[0];
-
+    //react gives error if no key is added
+    let headerIndex = 0;
     for (let field in referenceProject){
-        headers.push(field === "project"? (<div className="sort header-cell"><a className={this.props.sortingOrder} field={field} onClick={this.sortProjects}>{field.toUpperCase()}</a></div>) :
-        (<div className="header-cell">{field.toUpperCase()}</div>))
+        headers.push(field === "project"? (<div key={"header" + headerIndex} className="sort header-cell"><button className={"sort " + this.props.sortingOrder} field={field} onClick={this.sortProjects}>{field.toUpperCase()}</button></div>) :
+        (<div key={"header" + headerIndex} className="header-cell">{field.toUpperCase()}</div>))
+        headerIndex++;
     }
 
       return (<div>{headers}</div>);
@@ -93,7 +70,7 @@ class ProjectTable extends React.Component {
 
   getRows = (projects) => {
     return projects.map((project, index) => {
-        return (<div key={index}>
+        return (<div key={"project" + index}>
             {this.getProjectRow(project)}
         </div>)
     })
@@ -101,12 +78,14 @@ class ProjectTable extends React.Component {
 
   getProjectRow = (project) => {
     let rows = [];
+    let index = 0;
     for (let field in project){
         (this.props.viewportWidth < tabletBreakpoint) ?
-        rows.push((<div>
+        rows.push((<div key={"row" + index}>
         <div className="cell header-cell">{field.toUpperCase()}</div>
         <div className="cell">{this.getValue(field, project)}</div></div>)) :
-        rows.push((<div className="cell">{this.getValue(field, project)}</div>))
+        rows.push((<div key={"row" + index} className="cell">{this.getValue(field, project)}</div>))
+        index++;
     }
     return rows;
   }

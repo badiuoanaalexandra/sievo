@@ -17,17 +17,17 @@ exports[`<Filter /> renders 1`] = `
       value=""
     />
   </div>
-  <a
-    className=" sort button"
+  <button
+    className="sort  sort button"
     onClick={[Function]}
   >
     SORT
-  </a>
-  <a
+  </button>
+  <button
     className="reset button"
     onClick={[Function]}
   >
     RESET
-  </a>
+  </button>
 </div>
 `;

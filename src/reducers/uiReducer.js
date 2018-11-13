@@ -1,4 +1,4 @@
-import {REQUEST_VWWidth_CHANGE, RECEIVE_VWWidth_CHANGE} from '../actions/uiActions'
+import {RECEIVE_VWWidth_CHANGE} from '../actions/uiActions'
 import {getViewportWidth} from "../helpers/ui"
 
 export default (state = getViewportWidth(), {type}) => {

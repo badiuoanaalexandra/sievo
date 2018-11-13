@@ -5,8 +5,6 @@ import * as projectsApiActions from "../../src/actions/projectsApiActions"
 const mockStore = configureStore();
 const store = mockStore();
 
-
-
 describe('projectsApiActions', () => {
   beforeEach(() => {
     store.clearActions();

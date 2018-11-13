@@ -5,7 +5,6 @@ import * as uiActions from "../../src/actions/uiActions"
 const mockStore = configureStore();
 const store = mockStore();
 
-
 describe('uiActions', () => {
   beforeEach(() => {
     store.clearActions();

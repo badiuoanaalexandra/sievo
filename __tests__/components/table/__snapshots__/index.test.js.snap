@@ -8,88 +8,103 @@ exports[`<ProjectTable /> renders 1`] = `
     <div>
       <div
         className="sort header-cell"
+        key="header0"
       >
-        <a
-          className=""
+        <button
+          className="sort "
           field="project"
           onClick={[Function]}
         >
           PROJECT
-        </a>
+        </button>
       </div>
       <div
         className="header-cell"
+        key="header1"
       >
         DESCRIPTION
       </div>
       <div
         className="header-cell"
+        key="header2"
       >
         START DATE
       </div>
       <div
         className="header-cell"
+        key="header3"
       >
         SAVINGS AMOUNT
       </div>
       <div
         className="header-cell"
+        key="header4"
       >
         CURRENCY
       </div>
     </div>
     <div
-      key="0"
+      key="project0"
     >
       <div
         className="cell"
+        key="row0"
       >
         2
       </div>
       <div
         className="cell"
+        key="row1"
       >
         test
       </div>
       <div
         className="cell"
+        key="row2"
       >
         2013-12-28
       </div>
       <div
         className="cell"
+        key="row3"
       >
         3,722.417
       </div>
       <div
         className="cell"
+        key="row4"
       />
     </div>
     <div
-      key="1"
+      key="project1"
     >
       <div
         className="cell"
+        key="row0"
       >
         1
       </div>
       <div
         className="cell"
+        key="row1"
       >
         test 2
       </div>
       <div
         className="cell"
+        key="row2"
       >
         2014-1-28
       </div>
       <div
         className="cell"
+        key="row3"
       >
         372.32
       </div>
       <div
         className="cell"
+        key="row4"
       >
         EUR
       </div>

@@ -5,7 +5,6 @@ import * as projectsSortActions from "../../src/actions/projectsSortActions"
 const mockStore = configureStore();
 const store = mockStore();
 
-
 describe('projectsSortActions', () => {
   const description = "test descr";
   const sortingOrder = "asc";
