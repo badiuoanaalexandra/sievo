@@ -17,7 +17,8 @@ export default StyleSheet.create({
         "whiteSpace": "nowrap",
         "maxWidth": 0,
         "borderBottom": "1px solid rgba(252, 229, 237, 1)",
-        "backgroundColor": "rgba(255,253,255,0.9)"
+        "backgroundColor": "rgba(255,253,255,0.9)",
+        "verticalAlign": "middle"
     },
     "project-table divheader-cell": {
         "backgroundColor": "rgba(98,179,220,0.9)",

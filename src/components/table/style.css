@@ -7,6 +7,7 @@
   max-width: 0;
   border-bottom:1px solid rgba(252, 229, 237, 1);
   background-color:  rgba(255,253,255,0.9);
+  vertical-align: middle;
 }
 
 .project-table div.header-cell{
